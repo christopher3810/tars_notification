@@ -1,5 +1,6 @@
 package com.tars_notification.notification.connector;
 
+import com.google.gson.Gson;
 import java.io.IOException;
 import org.apache.http.HttpResponse;
 import org.apache.http.util.EntityUtils;

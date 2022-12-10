@@ -1,0 +1,9 @@
+spring:
+  config:
+    import: "optional:configserver"
+    use-legacy-processing: true
+
+KIS:
+  BASE_URL:
+  APP_KEY:
+  APP_SECRET:

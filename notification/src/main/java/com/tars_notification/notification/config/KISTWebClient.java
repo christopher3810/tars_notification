@@ -1,26 +1,45 @@
 package com.tars_notification.notification.config;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Bean;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
 @Configuration
 @Slf4j
-public class KISTWebClient
-{
+public class KISTWebClient {
 
-    private final String KISTBaseUrl = "https://openapi.koreainvestment.com:9443";
+    @Value("${KIS.APP_KEY}")
+    private String KSIAppKey;
 
-    //TODO : 최상위 클래스에서 WebClientConfig용
-    @Bean(name = "WebClient")
-    public WebClient WebClient() {
+    @Value("${KIS.APP_SECRET}")
+    private String KSIAppSecret;
 
-        return WebClient.builder().baseUrl(KISTBaseUrl)
-            .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(2 * 1024 * 1024))
-            .defaultHeader(
-                //Default로 들어가야할 header 설정하기
-            )
+    @Value("${KIS.BASE_URL}")
+    private String BaseUrl;
+
+//    //TODO : 최상위 클래스에서 WebClientConfig용
+//    @Bean(name = "WebClient")
+//    public WebClient WebClient() {
+//
+//        return WebClient.builder().baseUrl(BaseUrl)
+//            .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(2 * 1024 * 1024))
+//            .defaultHeader(
+//                //Default 로 들어가야할 token header 값을 넣어두기
+//            )
+//    }
+
+    private String GetKSIToken() {
+        Mono<String> tokenMono = WebClient.builder().baseUrl(BaseUrl + "/oauth2/tokenP").build()
+            .post()
+            .header("content-type", "application/json")
+            .header("appkey", this.KSIAppKey)
+            .header("appsecret", this.KSIAppSecret)
+            .exchangeToMono(response -> {
+                return response.bodyToMono(String.class);
+            });
+        return tokenMono.block();
     }
 
 }

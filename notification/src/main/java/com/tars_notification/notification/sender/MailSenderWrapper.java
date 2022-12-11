@@ -1,7 +1,7 @@
 package com.tars_notification.notification.sender;
 
 import com.tars_notification.notification.constants.MAIL_SERVER_PROTOCOL;
-import com.tars_notification.notification.dto.MailServerConfigDTO;
+import com.tars_notification.notification.repository.dto.MailServerConfigDTO;
 import java.util.Optional;
 import java.util.Properties;
 import javax.mail.MessagingException;

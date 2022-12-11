@@ -1,10 +1,12 @@
 package com.tars_notification.notification.config;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Mono;
 
 @Configuration
 @Slf4j
@@ -16,30 +18,26 @@ public class KISTWebClient {
     @Value("${KIS.APP_SECRET}")
     private String KSIAppSecret;
 
-    @Value("${KIS.BASE_URL}")
+    @Value("${KIS.URL.Base}")
     private String BaseUrl;
 
-//    //TODO : 최상위 클래스에서 WebClientConfig용
-//    @Bean(name = "WebClient")
-//    public WebClient WebClient() {
-//
-//        return WebClient.builder().baseUrl(BaseUrl)
-//            .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(2 * 1024 * 1024))
-//            .defaultHeader(
-//                //Default 로 들어가야할 token header 값을 넣어두기
-//            )
-//    }
+    //TODO : 최상위 클래스에서 WebClientConfig용
+    @Bean(name = "WebClient")
+    public WebClient WebClient() {
+        return WebClient.builder().baseUrl(BaseUrl)
+            .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(2 * 1024 * 1024))
+            .defaultHeader("authorization", "Bearer " + this.GetKSIToken())
+            .defaultHeader("appkey", this.KSIAppKey).defaultHeader("appsecret", this.KSIAppSecret)
+            .build();
+
+    }
 
     private String GetKSIToken() {
-        Mono<String> tokenMono = WebClient.builder().baseUrl(BaseUrl + "/oauth2/tokenP").build()
-            .post()
-            .header("content-type", "application/json")
-            .header("appkey", this.KSIAppKey)
-            .header("appsecret", this.KSIAppSecret)
-            .exchangeToMono(response -> {
-                return response.bodyToMono(String.class);
-            });
-        return tokenMono.block();
+        log.info("Start Request KSI Token");
+        String tokenMono = WebClient.builder().baseUrl(BaseUrl + "/oauth2/tokenP").build().post()
+            .header("content-type", "application/json").header("appkey", this.KSIAppKey)
+            .header("appsecret", this.KSIAppSecret).retrieve().bodyToMono(String.class).block();
+        return new Gson().fromJson(tokenMono, JsonObject.class).get("access_token").getAsString();
     }
 
 }

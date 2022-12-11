@@ -1,6 +1,6 @@
 package com.tars_notification.notification.service.message;
 
-import com.tars_notification.notification.dto.StockInfoDTO;
+import com.tars_notification.notification.repository.dto.StockInfoDTO;
 import org.thymeleaf.TemplateEngine;
 
 public class StockInfoMessageGenerator implements HtmlMSGGenerator{

@@ -10,7 +10,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 @Configuration
 @Slf4j
-public class KISTWebClient {
+public class KISBase {
 
     @Value("${KIS.APP_KEY}")
     private String KSIAppKey;
@@ -22,7 +22,7 @@ public class KISTWebClient {
     private String BaseUrl;
 
     //TODO : 최상위 클래스에서 WebClientConfig용
-    @Bean(name = "WebClient")
+    @Bean
     public WebClient WebClient() {
         return WebClient.builder().baseUrl(BaseUrl)
             .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(2 * 1024 * 1024))

@@ -1,11 +1,13 @@
 package com.tars_notification.notification.connector;
 
-import com.tars_notification.notification.config.KISTWebClient;
-import com.tars_notification.notification.constants.KSIApiDataFormat;
+import com.tars_notification.notification.config.KISBase;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
+@Component
+@RequiredArgsConstructor
 @Slf4j
 public class KoreaStockConnector {
 
@@ -15,15 +17,14 @@ public class KoreaStockConnector {
     // bean으로 webclient 기본 객체를 부여받고 connector는 abstract -> connect class 구조가 좋아 보인다.
 
 
-    //Spring Bean Field Injection 말고 생성자 injection 확인해보기.
-    @Autowired
-    KISTWebClient kistWebClient;
+    private  final KISBase KISBase;
 
     @Value("${KIS.TradingId.Stock-Quotation}")
     private String SQId;
 
     public void GetCurrentStockPrice() throws Exception {
-        String paramData = KSIApiDataFormat.CurrentStockValue.getFormat();
+//        String paramData = KSIApiDataFormat.CurrentStockValue.getFormat();
+
         try {
             //WebClient Connect
 

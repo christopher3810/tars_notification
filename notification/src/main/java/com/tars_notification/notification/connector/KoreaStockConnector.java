@@ -3,8 +3,8 @@ package com.tars_notification.notification.connector;
 import com.tars_notification.notification.config.KISBase;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import reactor.core.publisher.Mono;
 
 @Component
 @RequiredArgsConstructor
@@ -17,19 +17,21 @@ public class KoreaStockConnector {
     // bean으로 webclient 기본 객체를 부여받고 connector는 abstract -> connect class 구조가 좋아 보인다.
 
 
-    private  final KISBase KISBase;
+    private final KISBase kisBase;
 
-    @Value("${KIS.TradingId.Stock-Quotation}")
-    private String SQId;
-
-    public void GetCurrentStockPrice() throws Exception {
-//        String paramData = KSIApiDataFormat.CurrentStockValue.getFormat();
-
+    public void GetCurrentStockPrice(String stockType, String stockId) throws Exception {
+        String tr_id = "FHKST01010100";
+        String uri = "/uapiidomesticstock/v1/quotations/inquire-price";
         try {
-            //WebClient Connect
+            Mono<String> stringMono = kisBase.WebClient().get().uri(builder -> builder.path(uri)
+                .queryParam("fid_cond_mrkt_div_code", "J")
+                .queryParam("fid_inpput_iscd", "000660")
+                .build()
+            ).header("tr_id", tr_id).retrieve().bodyToMono(String.class);
+            System.out.println("stringMono = " + stringMono.toString());
 
         } catch (Exception e) {
-            //error 출력
+            log.info("Exception has Occurred when Request GetCurrent APi");
         } finally {
             // 로직 보고 결정
         }

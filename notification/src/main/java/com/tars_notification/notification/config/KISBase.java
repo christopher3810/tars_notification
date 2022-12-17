@@ -2,6 +2,7 @@ package com.tars_notification.notification.config;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -9,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.client.WebClient;
 
 @Configuration
+@RequiredArgsConstructor
 @Slf4j
 public class KISBase {
 

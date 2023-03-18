@@ -1,4 +1,5 @@
-![Java](https://img.shields.io/badge/language-Java-blue) ![Spring Webflux](https://img.shields.io/badge/framework-Spring_Webflux-brightgreen) ![PostgreSQL](https://img.shields.io/badge/database-PostgreSQL-blue) ![Redis](https://img.shields.io/badge/cache-Redis-red) ![Kafka](https://img.shields.io/badge/message_broker-Kafka-orange) ![Prometheus](https://img.shields.io/badge/monitoring-Prometheus-purple) ![Grafana](https://img.shields.io/badge/visualization-Grafana-yellowgreen)
+![Java](https://img.shields.io/badge/language-Java-blue) ![Spring Webflux](https://img.shields.io/badge/framework-Spring_Webflux-brightgreen) ![PostgreSQL](https://img.shields.io/badge/database-PostgreSQL-blue) \
+![Redis](https://img.shields.io/badge/cache-Redis-red) ![Kafka](https://img.shields.io/badge/message_broker-Kafka-orange) ![Prometheus](https://img.shields.io/badge/monitoring-Prometheus-purple) ![Grafana](https://img.shields.io/badge/visualization-Grafana-yellowgreen)
 
 ![tars-noti](https://user-images.githubusercontent.com/61622657/226113256-f64492b9-7a53-4551-b042-0e3d5f8963b9.gif)
 

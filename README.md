@@ -8,11 +8,11 @@ interstella 의 tars를 모티브로 했습니다. \
 
 ## 목차
 
--   [서비스 개념](https://chat.openai.com/chat?model=gpt-4#%EC%84%9C%EB%B9%84%EC%8A%A4-%EA%B0%9C%EB%85%90)
-    -   [초기 목표](https://chat.openai.com/chat?model=gpt-4#%EC%B4%88%EA%B8%B0-%EB%AA%A9%ED%91%9C)
--   [서비스 아키텍처](https://chat.openai.com/chat?model=gpt-4#%EC%84%9C%EB%B9%84%EC%8A%A4-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98)
--   [주요 기능](https://chat.openai.com/chat?model=gpt-4#%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5)
--   [설치 필요 사항](https://chat.openai.com/chat?model=gpt-4#%EC%84%A4%EC%B9%98-%ED%95%84%EC%9A%94-%EC%82%AC%ED%95%AD)
+-   [서비스 개념]
+    -   [초기 목표]
+-   [서비스 아키텍처]
+-   [주요 기능]
+-   [설치 필요 사항]
 
 ### 초기 목표
 

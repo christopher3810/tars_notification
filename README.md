@@ -3,6 +3,8 @@
 
 ![tars-noti](https://user-images.githubusercontent.com/61622657/226113256-f64492b9-7a53-4551-b042-0e3d5f8963b9.gif)
 
+> 해당 프로젝트는 당분간 pending.. 모니터링프로젝트를 선행적으로 진행후 차후 진행예정
+
 interstella 의 tars를 모티브로 했습니다. \
 사용자가 원하는 주식 정보를 이메일로 받아볼 수 있도록 등록하고 설정하는 서비스 입니다.
 
